@@ -9,6 +9,7 @@ import { MatTableModule } from '@angular/material/table'
 import { MatButtonModule } from "@angular/material/button";
 import { ClientService } from '../client.service';
 import { Client } from '../cadastro/client';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-consulta',
   imports: [MatInputModule,
@@ -17,18 +18,26 @@ import { Client } from '../cadastro/client';
     MatIconModule,
     FormsModule,
     MatTableModule,
-    MatButtonModule, 
+    MatButtonModule,
     CommonModule],
   templateUrl: './consulta.component.html',
   styleUrls: ['./consulta.component.scss']
 })
 export class ConsultaComponent implements OnInit {
 
+  nameSearch: string = '';
   listClients: Client[] = [];
-  columnsTable: string[] = ["id", "name", "cpf", "birth", "email"]; 
-  constructor(private service: ClientService) {
+  columnsTable: string[] = ["id", "name", "cpf", "birth", "email", "actions"];
+  constructor(private service: ClientService, 
+    private router: Router) {
   }
   ngOnInit() {
     this.listClients = this.service.searchClients('');
+  }
+  search() {
+    this.listClients = this.service.searchClients(this.nameSearch);
+  }
+  prepareEdit(id: string) {
+    this.router.navigate(['/cadastro'], {queryParams: {"id": id}})
   }
 }
