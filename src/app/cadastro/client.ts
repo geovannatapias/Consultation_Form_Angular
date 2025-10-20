@@ -7,7 +7,8 @@ export class Client {
     cpf?:string;
     birth?: string
     email?:string;
-
+    uf?: string;
+    municipality?: string; 
     static newClient(){
         const client = new Client();
         client.id = uuid();  //create new id to client

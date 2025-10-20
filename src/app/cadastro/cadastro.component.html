@@ -12,7 +12,7 @@
             <div fxLayout="column" fxFlex="800px">
               <mat-form-field class="full-width">
                 <mat-label> Name: *</mat-label>
-                <input matInput type="text" [(ngModel)]="client.name" name="name" placeholder="Ex:José da Silva">
+                <input matInput type="text" [(ngModel)]="client.name" name="name" placeholder="Ex:Jane Smith">
               </mat-form-field>
             </div>
           </div>
@@ -21,7 +21,7 @@
             <div fxLayout="column" fxFlex="800px">
               <mat-form-field class="full-width">
                 <mat-label> Email: *</mat-label>
-                <input matInput type="text" [(ngModel)]="client.email" name="email" placeholder="Enter your email"
+                <input matInput type="text" [(ngModel)]="client.email" name="email" placeholder="Enter your Email"
                   matInput />
               </mat-form-field>
             </div>
@@ -30,8 +30,8 @@
             <div fxLayout="column" fxFlex="400px">
               <mat-form-field class="full-width">
                 <mat-label> CPF *</mat-label>
-                <input matInput type="text" [(ngModel)]="client.cpf" name="cpf" mask="000.000. 000-00" placeholder="Enter your CPF number"
-                  matInput />
+                <input matInput type="text" [(ngModel)]="client.cpf" name="cpf" mask="000.000. 000-00"
+                  placeholder="Enter your CPF number" matInput />
               </mat-form-field>
             </div>
           </div>
@@ -44,6 +44,33 @@
               </mat-form-field>
             </div>
           </div>
+
+          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
+            <div fxLayout="column" fxFlex="400px">
+              <mat-form-field class="full-width">
+                <mat-label>UF: *</mat-label>
+                <mat-select [(value)]="client.uf" (selectionChange)="loadMunicipalities($event)">
+                  <mat-option *ngFor="let uf of states" [value]="uf.sigla">
+                    {{ uf.sigla }} - {{ uf.nome }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
+            <div fxLayout="column" fxFlex="400px">
+              <mat-form-field class="full-width">
+                <mat-label>Municipality: *</mat-label>
+                <mat-select [(value)]="client.municipality">
+                  <mat-option *ngFor="let m of municipalities" [value]="m.nome">
+                    {{m.nome }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
         </mat-card-content>
         <mat-card-actions>
           @if(!updating) {
@@ -55,11 +82,11 @@
           <button mat-flat-button color="primary">
             <mat-icon fontIcon="refresh"></mat-icon>
             Refresh
-          </button>    
+          </button>
           }
           <button mat-flat-button color="accent" class="ml-5">
             <mat-icon fontIcon="backspace"></mat-icon>
-            Clear
+            Back
           </button>
 
         </mat-card-actions>

@@ -1,12 +1,32 @@
 <mat-toolbar color="primary">
-  <span>Customer Registration </span>
+  <span>Customer Registration</span>
   <span class="spacer"></span>
-  <a routerLink="/cadastro">
-    <mat-icon fontIcon="feed"></mat-icon>
+  <a routerLink="/cadastro" class="toolbar-link">
+    <mat-icon>feed</mat-icon>
     Form
   </a>
-  <a routerLink="/consulta">
-    <mat-icon fontIcon="search"></mat-icon>
-    Consultation</a>
+  <a routerLink="/consulta" class="toolbar-link">
+    <mat-icon>search</mat-icon>
+    Consultation
+  </a>
 </mat-toolbar>
+
 <router-outlet></router-outlet>
+
+<div class="home-container">
+  <div class="welcome-card">
+    <h1>Welcome!</h1>
+    <p>Start by filling out the form or checking your consultations.</p>
+    <div class="buttons">
+      <button mat-raised-button color="primary" routerLink="/cadastro">
+        <mat-icon>feed</mat-icon>
+        Go to Form
+      </button>
+      <button mat-raised-button color="accent" routerLink="/consulta">
+        <mat-icon>search</mat-icon>
+        Go to Consultation
+      </button>
+    </div>
+  </div>
+</div>
+
