@@ -14,6 +14,24 @@ export class ClientService {
     storage.push(client);
     localStorage.setItem(ClientService.Repo_Clients, JSON.stringify(storage));
   }
+  update(client: Client) {
+    const storage = this.obterStorage();
+    storage.forEach(c => {
+      if(c.id === client.id) {
+        Object.assign(c, client);
+      }
+    })
+    localStorage.setItem(ClientService.Repo_Clients, JSON.stringify(storage));
+  } 
+
+  delete(client : Client) {
+    const storage = this.obterStorage();
+    const index = storage.findIndex(c => c.id === client.id);
+    if (index > -1) {
+    storage.splice(index, 1);
+      localStorage.setItem(ClientService.Repo_Clients, JSON.stringify(storage));
+    }
+  }
   searchClients(nameSearch: string): Client[] {
     const clients = this.obterStorage();
     if (!nameSearch) {
@@ -26,7 +44,7 @@ export class ClientService {
     const clients = this.obterStorage();
     return clients.find(client => client.id === id)
   }
-  
+
   private obterStorage(): Client[] {
     const repositoryclients = localStorage.getItem(ClientService.Repo_Clients);
     if (repositoryclients) {

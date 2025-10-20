@@ -28,7 +28,11 @@ export class ConsultaComponent implements OnInit {
   nameSearch: string = '';
   listClients: Client[] = [];
   columnsTable: string[] = ["id", "name", "cpf", "birth", "email", "actions"];
-  constructor(private service: ClientService, 
+
+  deleting : boolean = false;
+  clientToDelete?: Client;
+
+  constructor(private service: ClientService,
     private router: Router) {
   }
   ngOnInit() {
@@ -38,6 +42,17 @@ export class ConsultaComponent implements OnInit {
     this.listClients = this.service.searchClients(this.nameSearch);
   }
   prepareEdit(id: string) {
-    this.router.navigate(['/cadastro'], {queryParams: {"id": id}})
+    this.router.navigate(['/cadastro'], { queryParams: { "id": id } })
+  }
+  prepareDelete(client : Client) {
+    this.clientToDelete = client;
+    this.deleting = true;
+  }
+  delete() {
+    if (!this.clientToDelete) return;
+    this.service.delete(this.clientToDelete);
+    this.listClients = this.service.searchClients('');
+    this.deleting = false;
+    this.clientToDelete = undefined;
   }
 }

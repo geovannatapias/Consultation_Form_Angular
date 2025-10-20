@@ -68,10 +68,20 @@
                 <mat-icon fontIcon="edit"></mat-icon>
                 Edit
               </button>
+              @if(!deleting) {
+              <button type="button" mat-button (click)="prepareDelete(client)">
+                <mat-icon fontIcon="delete"></mat-icon>
+                Delete
+              </button>
+              } 
+              @else {
+               <button type="button" mat-button (click)="delete()">
+                <mat-icon fontIcon="question_mark"></mat-icon>
+                Confirm
+               </button>
+              }
             </td>
           </ng-container>
-
-
           <tr mat-header-row *matHeaderRowDef="columnsTable"></tr>
           <tr mat-row *matRowDef="let row; columns: columnsTable"></tr>
         </table>
