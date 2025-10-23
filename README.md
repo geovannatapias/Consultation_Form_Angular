@@ -1,59 +1,92 @@
-# CrudAngularMaterial
+# 🧾 Customer Registration – Angular Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.2.
+A **Single Page Application (SPA)** built with **Angular** and **Angular Material** for managing customer data — including **create**, **read**, **update**, and **delete (CRUD)** operations.  
+It features a modern, responsive interface integrated with **BrazilAPI** for dynamic state and city lookup.
 
-## Development server
+## ✨ Features
 
-To start a local development server, run:
+### 🏠 Home Page
+- Navigation toolbar with access to **Form** and **Consultation** pages  
+- Welcome card with quick navigation buttons  
+- Clean design with **gradients**, **soft shadows**, and **hover animations**
+  
+  <img width="700" height="955" alt="readme1" src="https://github.com/user-attachments/assets/5ae0f76d-abee-44c5-95e4-855883adf83f" />
 
-```bash
-ng serve
-```
+### 👤 Customer Registration
+- Form fields:
+  - Name  
+  - Email  
+  - CPF (with input mask)  
+  - Birth date (with input mask)  
+  - State (UF) – loaded from [BrazilAPI](https://brasilapi.com.br/)  
+  - City – dynamically loaded based on selected state
+- Actions:
+  - Create new customer  
+  - Edit existing customer  
+  - Feedback messages via **MatSnackBar**
+    
+<img width="700" height="848" alt="readme2" src="https://github.com/user-attachments/assets/958a6446-c678-40f5-9fbe-8867eae89d96" />
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+### 🔍 Customer Consultation
+- Search customers by name  
+- Interactive table displaying:
+  - ID  
+  - Name  
+  - CPF  
+  - Birth Date  
+  - Email  
+- Action buttons:
+  - ✏️ **Edit** – navigates to the form with pre-filled data  
+  - 🗑️ **Delete** – requires confirmation before deletion  
+- Real-time visual feedback after deletion
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+<img width="700" height="839" alt="readme3" src="https://github.com/user-attachments/assets/b11031cb-be61-4628-9dbc-cac98f84c7a0" />
 
-```bash
-ng generate component component-name
-```
+## 🧱 Project Structure
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+src/
+├── app/
+│ ├── cadastro/ # Customer registration page
+│ │ ├── cadastro.component.ts
+│ │ ├── cadastro.component.html
+│ │ └── cadastro.component.scss
+│ ├── consulta/ # Customer consultation page
+│ │ ├── consulta.component.ts
+│ │ ├── consulta.component.html
+│ │ └── consulta.component.scss
+│ ├── client.service.ts # CRUD logic (mock/local storage)
+│ ├── brazilapi.service.ts # Fetches Brazilian states and cities
+│ ├── client.ts # Customer model class
+│ ├── app-routing.module.ts # Routing configuration
+│ └── app.component.* # Toolbar + home page
+└── assets/
+└── screenshots/ # (optional) UI images
 
-```bash
-ng generate --help
-```
+yaml
+Copiar código
 
-## Building
+---
 
-To build the project run:
+## 🧩 Tech Stack
 
-```bash
-ng build
-```
+| Technology | Purpose |
+|-------------|----------|
+| **Angular 17+** | Main frontend framework |
+| **Angular Material** | UI components and styling |
+| **Flex Layout** | Responsive design with Flexbox |
+| **NgxMask** | Input masks for CPF and date fields |
+| **BrazilAPI** | Fetches Brazilian states and cities |
+| **UUID** | Generates unique IDs for customers |
+| **MatSnackBar** | User feedback and alerts |
+| **SCSS** | Custom styles and transitions |
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## ⚙️ How to Run
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### 1️⃣ Prerequisites
+- Node.js (LTS version)
+- Angular CLI installed globally  
+  ```bash
+  npm install -g @angular/cli
